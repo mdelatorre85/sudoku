@@ -1,4 +1,4 @@
-package com.Sudoku.server.genetic;
+package com.Sudoku.server;
 
 import java.io.BufferedReader;
 import java.io.IOException;

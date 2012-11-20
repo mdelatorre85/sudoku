@@ -32,7 +32,7 @@ public class Sudoku implements Serializable {
 	/**
 	 * Contructor por defecto, crea un sudoku vacio.
 	 */
-	public Sudoku() {
+	private Sudoku() {
 		celdas = new Stack<Stack<Celda>>();
 		sudoku = new int[9][9];
 		sudokus = new Stack<Sudoku>();

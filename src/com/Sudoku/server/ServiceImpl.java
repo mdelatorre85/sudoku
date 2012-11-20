@@ -1,6 +1,7 @@
 package com.Sudoku.server;
 
 import com.Sudoku.client.Service;
+import com.Sudoku.server.genetic.GeneticSudoku;
 import com.Sudoku.shared.Sudoku;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
@@ -60,18 +61,8 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 	}
 
 	@Override
-	public Sudoku genetico(int[][] s) {
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		return null;
+	public GeneticSudoku genetico(int[][] s) {
+		return new GeneticSudoku(s);
 	}
 
 }

@@ -295,9 +295,9 @@ public class Tabla extends DecoratorPanel implements KeyUpHandler,
 								showInCorrecto();
 								setEnableButtons(true);
 							} else {
-								if (!result.isAprox()) {
-									showInCorrecto();
-								}
+								// if (!result.isAprox()) {
+								// showInCorrecto();
+								// }
 								genetico.removeStyleName("Clicked");
 								setEnableButtons(true);
 								setResultado(result);
