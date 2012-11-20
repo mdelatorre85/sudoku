@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/3/trunk/Sudoku/src/com/Sudoku/client
+END
+Service.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/8/trunk/Sudoku/src/com/Sudoku/client/Service.java
+END
+ClientController.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/4/trunk/Sudoku/src/com/Sudoku/client/ClientController.java
+END
+PanelEscritorio.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/4/trunk/Sudoku/src/com/Sudoku/client/PanelEscritorio.java
+END
+Tabla.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/10/trunk/Sudoku/src/com/Sudoku/client/Tabla.java
+END
+Sudoku.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/4/trunk/Sudoku/src/com/Sudoku/client/Sudoku.java
+END
+ServiceAsync.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/8/trunk/Sudoku/src/com/Sudoku/client/ServiceAsync.java
+END

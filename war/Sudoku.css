@@ -1,0 +1,154 @@
+/** Add css rules here for your application. */
+/* rgb(26,104,132); */
+/* rgb(45,41,37); */
+/* rgb(168,192,72); */
+/* rgb(39,143,175); */
+/* rgb(13,11,22); */
+.Ventana {
+	background-color: rgb(45, 41, 37);
+	-moz-box-shadow: 0 0 30px rgb(45, 41, 37);
+	-webkit-box-shadow: 0 0 30px rgb(45, 41, 37);
+	box-shadow: 0 0 30px rgb(45, 41, 37);
+	border: 3px solid rgb(168, 192, 72);
+	font-family: Helvetica;
+	font-size: 100%;
+	font-weight: lighter;
+	font-strech: wider;
+	opacity: .80;
+	filter: alpha(opacity =            
+		                                                         
+		              80);
+}
+
+.Escritorio {
+	background-image: url('/img/3267.png');
+}
+
+.Grid {
+	
+}
+
+.Celda {
+	background-color: rgb(13, 11, 22);
+	color: rgb(39, 143, 175);
+	font-family: Helvetica;
+	font-size: x-large;
+	font-weight: lighter;
+	font-strech: wider;
+	text-align: center;
+	vertical-align: middle;
+	border: 1px solid rgb(39, 143, 175);
+}
+
+.Celda:hover {
+	-moz-box-shadow: 0 0 4px 4px rgb(39, 143, 175);
+	-webkit-box-shadow: 0 0 4px 4px rgb(39, 143, 175);
+	box-shadow: 0 0 4px 4px rgb(39, 143, 175);
+}
+
+.CeldaMuestra {
+	-moz-box-shadow: 0 0 2px 2px rgb(39, 143, 175);
+	-webkit-box-shadow: 0 0 2px 2px rgb(39, 143, 175);
+	box-shadow: 0 0 2px 2px rgb(39, 143, 175);
+}
+
+.CeldaLlena {
+	background-color: rgb(26, 104, 132);
+	color: rgb(13, 11, 22);
+}
+
+.CeldaLlena:hover {
+	-moz-box-shadow: 0 0 4px 4px rgb(39, 143, 175);
+	-webkit-box-shadow: 0 0 4px 4px rgb(39, 143, 175);
+	box-shadow: 0 0 4px 4px rgb(39, 143, 175);
+}
+
+.Sudoku {
+	background-color: rgb(13, 11, 22);
+	opacity: 1.0;
+	filter: alpha(opacity =           
+		                                                         
+		               100);
+}
+
+.Boton {
+	background-color: rgb(13, 11, 22);
+	color: rgb(168, 192, 72);
+	font-family: Helvetica;
+	font-size: x-large;
+	font-weight: lighter;
+	font-strech: wider;
+	text-align: center;
+	vertical-align: middle;
+	border: 1px solid rgb(168, 192, 72);
+}
+
+.Boton:hover {
+	-moz-box-shadow: 0 0 4px 4px rgb(168, 192, 72);
+	-webkit-box-shadow: 0 0 4px 4px rgb(168, 192, 72);
+	box-shadow: 0 0 4px 4px rgb(168, 192, 72);
+}
+
+.Boton:active {
+	background-color: rgb(168, 192, 72);
+	color: rgb(13, 11, 22);
+	-moz-box-shadow: 0 0 4px 4px rgb(168, 192, 72);
+	-webkit-box-shadow: 0 0 4px 4px rgb(168, 192, 72);
+	box-shadow: 0 0 4px 4px rgb(168, 192, 72);
+}
+
+.Clicked {
+	background-color: rgb(168, 192, 72);
+	color: rgb(13, 11, 22);
+	-moz-box-shadow: 0 0 4px 4px rgb(168, 192, 72);
+	-webkit-box-shadow: 0 0 4px 4px rgb(168, 192, 72);
+	box-shadow: 0 0 4px 4px rgb(168, 192, 72);
+}
+
+.Error {
+	-moz-box-shadow: 0 0 10px 10px rgb(168, 192, 72);
+	-webkit-box-shadow: 0 0 10px 10px rgb(168, 192, 72);
+	box-shadow: 0 0 10px 10px rgb(168, 192, 72);
+}
+
+.Index {
+	background-color: rgb(13, 11, 22);
+	color: rgb(168, 192, 72);
+	font-family: Helvetica;
+	font-size: x-large;
+	font-weight: lighter;
+	font-strech: wider;
+	text-align: center;
+	vertical-align: middle;
+	border: 1px solid rgb(168, 192, 72);
+}
+
+.Index:hover {
+	-moz-box-shadow: 0 0 4px 4px rgb(168, 192, 72);
+	-webkit-box-shadow: 0 0 4px 4px rgb(168, 192, 72);
+	box-shadow: 0 0 4px 4px rgb(168, 192, 72);
+}
+
+.Index:active {
+	background-color: rgb(168, 192, 72);
+	color: rgb(13, 11, 22);
+	-moz-box-shadow: 0 0 4px 4px rgb(168, 192, 72);
+	-webkit-box-shadow: 0 0 4px 4px rgb(168, 192, 72);
+	box-shadow: 0 0 4px 4px rgb(168, 192, 72);
+}
+
+.Dialog {
+	background-color: rgb(45, 41, 37);
+	color: rgb(39, 143, 175);
+	font-family: Helvetica;
+	font-size: x-large;
+	font-weight: lighter;
+	font-strech: wider;
+	text-align: center;
+	vertical-align: middle;
+	border: 1px solid rgb(39, 143, 175);
+	opacity: .90;
+	filter: alpha(opacity =            
+		                                                         
+		              90);
+}
