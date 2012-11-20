@@ -3,10 +3,6 @@ package com.Sudoku.shared;
 import java.io.Serializable;
 import java.util.Stack;
 
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.Persistent;
-
-@PersistenceCapable
 public class Sudoku implements Serializable {
 
 	private static final long serialVersionUID = 8375667867474065406L;
@@ -15,7 +11,7 @@ public class Sudoku implements Serializable {
 	 * Arreglo bidimencional de enteros que representa el estado actual del
 	 * Sudoku de forma simplificada para hacerlo persistente.
 	 */
-	@Persistent
+
 	private int sudoku[][];
 
 	/**
@@ -32,7 +28,7 @@ public class Sudoku implements Serializable {
 	/**
 	 * Contructor por defecto, crea un sudoku vacio.
 	 */
-	private Sudoku() {
+	public Sudoku() {
 		celdas = new Stack<Stack<Celda>>();
 		sudoku = new int[9][9];
 		sudokus = new Stack<Sudoku>();

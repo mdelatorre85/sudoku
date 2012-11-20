@@ -1,5 +1,6 @@
-package com.Sudoku.server.genetic;
+package com.Sudoku.shared.genetic;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Stack;
 
@@ -15,11 +16,15 @@ import com.Sudoku.shared.Sudoku;
  * @author miguelangeldelatorre
  * 
  */
-public class GeneticSudoku extends Sudoku {
+public class GeneticSudoku extends Sudoku implements Serializable {
 	private static final long serialVersionUID = -8014190867918637851L;
-	public static final int MAXGENERATIONS = 300;
+	public static final int MAXGENERATIONS = 3000;
 
 	private Stack<Generation> generations = new Stack<Generation>();
+
+	public GeneticSudoku() {
+		super();
+	}
 
 	public GeneticSudoku(int[][] s) {
 		super(s);
@@ -29,6 +34,7 @@ public class GeneticSudoku extends Sudoku {
 		int currentGeneration = 0;
 		while (currentGeneration < MAXGENERATIONS) {
 			currentGeneration++;
+			System.out.println("Generación: " + currentGeneration);
 			Generation nextGeneration = new Generation(null);
 			while (nextGeneration.getSudokus().size() < Generation.POPULATIONSIZE) {
 				LittleSudoku father = generations.peek().getTournamentWinner();
@@ -42,6 +48,14 @@ public class GeneticSudoku extends Sudoku {
 				}
 			}
 			nextGeneration.calculateFitness();
+
+			System.out.println("\tBest Fitness: "
+					+ nextGeneration.getBestFitness());
+			System.out.println("\tAverage Fitness: "
+					+ nextGeneration.getAverageFitness());
+			System.out.println("\tWorst Fitness: "
+					+ nextGeneration.getWorstFitness());
+
 			generations.push(nextGeneration);
 		}
 
@@ -51,6 +65,7 @@ public class GeneticSudoku extends Sudoku {
 				setCelda(i, j, bestS[i][j]);
 			}
 		}
+		System.out.println("Ta·Dah");
 	}
 
 	public Stack<Generation> getGenerations() {

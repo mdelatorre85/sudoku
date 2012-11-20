@@ -9,7 +9,7 @@ public class ClientController {
 	private Tabla tabla;
 
 	public ClientController() {
-		server = (ServiceAsync) GWT.create(Service.class);
+		server = GWT.create(Service.class);
 
 		escritorio = new PanelEscritorio(this);
 

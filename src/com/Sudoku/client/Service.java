@@ -1,5 +1,6 @@
 package com.Sudoku.client;
 
+import com.Sudoku.shared.genetic.GeneticSudoku;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
@@ -13,7 +14,7 @@ public interface Service extends RemoteService {
 	com.Sudoku.shared.Sudoku aproximacion(int[][] s);
 
 	com.Sudoku.shared.Sudoku inteligente(int[][] s);
-	
-	com.Sudoku.shared.Sudoku genetico(int[][] s);
+
+	GeneticSudoku genetic(int[][] s);
 
 }

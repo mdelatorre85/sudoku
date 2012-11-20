@@ -1,9 +1,7 @@
-package com.Sudoku.server.genetic;
+package com.Sudoku.shared.genetic;
 
 import java.io.Serializable;
 import java.util.Stack;
-
-import com.Sudoku.server.Random;
 
 /**
  * 
@@ -13,7 +11,7 @@ import com.Sudoku.server.Random;
 public class Generation implements Serializable {
 
 	private static final long serialVersionUID = -3189980947538288543L;
-	private static final int TOURNAMENTSIZE = 10;
+	private static final int TOURNAMENTSIZE = 20;
 	public static final int POPULATIONSIZE = 350;
 
 	private Stack<LittleSudoku> sudokus;
@@ -30,21 +28,31 @@ public class Generation implements Serializable {
 	public Generation(int[][] s) {
 		sudokus = new Stack<LittleSudoku>();
 		if (s != null) {
-			int[][] sClone;
+			int[][] sClone = null;
+
 			for (int i = 0; i < POPULATIONSIZE; i++) {
-				sClone = s.clone();
+				sClone = new int[9][9];
 				for (int j = 0; j < 9; j++) {
 					for (int k = 0; k < 9; k++) {
-						if (sClone[j][k] == 0) {
+						if (s[j][k] == 0) {
 							sClone[j][k] = (int) (Math
-									.floor(Random.getRandom() * 9.0d));
-							sClone[j][k]++;
+									.floor(Math.random() * 9.0d));
+							if (sClone[j][k] < 9) {
+								sClone[j][k]++;
+							}
+						} else {
+							sClone[j][k] = s[j][k];
 						}
 					}
 				}
-				sudokus.push(new LittleSudoku(s, sClone));
+				sudokus.push(new LittleSudoku(sClone, s));
 			}
 		}
+	}
+
+	@SuppressWarnings("unused")
+	private Generation() {
+
 	}
 
 	public Stack<LittleSudoku> getSudokus() {
@@ -99,11 +107,11 @@ public class Generation implements Serializable {
 	}
 
 	public LittleSudoku getTournamentWinner() {
-		LittleSudoku tournamentWinner = sudokus.get((int) Math.floor(Random
-				.getRandom() * POPULATIONSIZE)), tournamentParticipant;
+		LittleSudoku tournamentWinner = sudokus.get((int) Math.floor(Math
+				.random() * POPULATIONSIZE)), tournamentParticipant;
 		for (int i = 0; i < TOURNAMENTSIZE; i++) {
-			tournamentParticipant = sudokus.get((int) Math.floor(Random
-					.getRandom() * POPULATIONSIZE));
+			tournamentParticipant = sudokus.get((int) Math.floor(Math.random()
+					* POPULATIONSIZE));
 			if (tournamentParticipant.getFitness() > tournamentWinner
 					.getFitness()) {
 				tournamentWinner = tournamentParticipant;

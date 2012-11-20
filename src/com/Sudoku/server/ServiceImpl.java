@@ -1,15 +1,16 @@
 package com.Sudoku.server;
 
 import com.Sudoku.client.Service;
-import com.Sudoku.server.genetic.GeneticSudoku;
 import com.Sudoku.shared.Sudoku;
+import com.Sudoku.shared.genetic.GeneticSudoku;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 /**
  * The server side implementation of the RPC service.
  */
-@SuppressWarnings("serial")
 public class ServiceImpl extends RemoteServiceServlet implements Service {
+
+	private static final long serialVersionUID = -1185878854310405805L;
 
 	@Override
 	public com.Sudoku.shared.Sudoku isSudoku(int[][] s) {
@@ -61,8 +62,9 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 	}
 
 	@Override
-	public GeneticSudoku genetico(int[][] s) {
+	public GeneticSudoku genetic(int[][] s) {
 		return new GeneticSudoku(s);
 	}
+
 
 }

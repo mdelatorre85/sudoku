@@ -1,11 +1,8 @@
 package com.Sudoku.client;
 
-import com.Sudoku.shared.Sudoku;
+import com.Sudoku.shared.genetic.GeneticSudoku;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-/**
- * The async counterpart of <code>GreetingService</code>.
- */
 public interface ServiceAsync {
 
 	void isSudoku(int[][] s, AsyncCallback<com.Sudoku.shared.Sudoku> callback);
@@ -17,6 +14,8 @@ public interface ServiceAsync {
 
 	void inteligente(int[][] s, AsyncCallback<com.Sudoku.shared.Sudoku> callback);
 
-	void genetico(int[][] s, AsyncCallback<Sudoku> callback);
+	void genetic(int[][] s, AsyncCallback<GeneticSudoku> callback);
+
+
 
 }

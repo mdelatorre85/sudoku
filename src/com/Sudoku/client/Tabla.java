@@ -1,6 +1,8 @@
 package com.Sudoku.client;
 
 import com.Sudoku.shared.Sudoku;
+import com.Sudoku.shared.Sudokus;
+import com.Sudoku.shared.genetic.GeneticSudoku;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyUpEvent;
@@ -103,13 +105,13 @@ public class Tabla extends DecoratorPanel implements KeyUpHandler,
 		botones.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
 		botones.setStyleName("Sudoku");
 
-		fuerzabruta.setSize("160px", "160px");
+		fuerzabruta.setSize("160px", "140px");
 		fuerzabruta.setStyleName("Boton");
-		aproximacion.setSize("160px", "160px");
+		aproximacion.setSize("160px", "140px");
 		aproximacion.setStyleName("Boton");
-		inteligente.setSize("160px", "160px");
+		inteligente.setSize("160px", "140px");
 		inteligente.setStyleName("Boton");
-		genetico.setSize("160px", "160px");
+		genetico.setSize("160px", "140px");
 		genetico.setStyleName("Boton");
 
 		botones.add(fuerzabruta);
@@ -278,32 +280,32 @@ public class Tabla extends DecoratorPanel implements KeyUpHandler,
 		} else if (event.getSource().equals(genetico)) {
 			genetico.addStyleName("Clicked");
 			setEnableButtons(false);
-			server.genetico(data,
-					new AsyncCallback<com.Sudoku.shared.Sudoku>() {
+			// server.genetic(data,
+			server.genetic(Sudokus.s5, new AsyncCallback<GeneticSudoku>() {
 
-						@Override
-						public void onFailure(Throwable caught) {
-							caught.printStackTrace();
-							showInCorrecto();
-							genetico.removeStyleName("Clicked");
-							setEnableButtons(true);
-						}
+				@Override
+				public void onFailure(Throwable caught) {
+					caught.printStackTrace();
+					showInCorrecto();
+					genetico.removeStyleName("Clicked");
+					setEnableButtons(true);
+				}
 
-						@Override
-						public void onSuccess(Sudoku result) {
-							if (result == null) {
-								showInCorrecto();
-								setEnableButtons(true);
-							} else {
-								// if (!result.isAprox()) {
-								// showInCorrecto();
-								// }
-								genetico.removeStyleName("Clicked");
-								setEnableButtons(true);
-								setResultado(result);
-							}
-						}
-					});
+				@Override
+				public void onSuccess(GeneticSudoku result) {
+					if (result == null) {
+						showInCorrecto();
+						setEnableButtons(true);
+					} else {
+						// if (!result.isAprox()) {
+						// showInCorrecto();
+						// }
+						genetico.removeStyleName("Clicked");
+						setEnableButtons(true);
+						setResultado(result);
+					}
+				}
+			});
 		}
 
 	}
