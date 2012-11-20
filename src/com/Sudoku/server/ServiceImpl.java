@@ -59,4 +59,19 @@ public class ServiceImpl extends RemoteServiceServlet implements Service {
 		}
 	}
 
+	@Override
+	public Sudoku genetico(int[][] s) {
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		return null;
+	}
+
 }

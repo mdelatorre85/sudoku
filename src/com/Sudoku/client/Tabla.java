@@ -36,6 +36,7 @@ public class Tabla extends DecoratorPanel implements KeyUpHandler,
 	private Button fuerzabruta;
 	private Button aproximacion;
 	private Button inteligente;
+	private Button genetico;
 
 	public Tabla(ClientController controller) {
 		this.controller = controller;
@@ -95,6 +96,7 @@ public class Tabla extends DecoratorPanel implements KeyUpHandler,
 		fuerzabruta = new Button("Fuerza Bruta");
 		aproximacion = new Button("Aproximación");
 		inteligente = new Button("Inteligente");
+		genetico = new Button("Genético");
 
 		botones.setSize("200px", "645px");
 		botones.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
@@ -107,14 +109,18 @@ public class Tabla extends DecoratorPanel implements KeyUpHandler,
 		aproximacion.setStyleName("Boton");
 		inteligente.setSize("160px", "160px");
 		inteligente.setStyleName("Boton");
+		genetico.setSize("160px", "160px");
+		genetico.setStyleName("Boton");
 
 		botones.add(fuerzabruta);
 		botones.add(aproximacion);
 		botones.add(inteligente);
+		botones.add(genetico);
 
 		fuerzabruta.addClickHandler(this);
 		aproximacion.addClickHandler(this);
 		inteligente.addClickHandler(this);
+		genetico.addClickHandler(this);
 
 		panel.add(botones);
 
@@ -269,6 +275,35 @@ public class Tabla extends DecoratorPanel implements KeyUpHandler,
 						}
 					});
 
+		} else if (event.getSource().equals(genetico)) {
+			genetico.addStyleName("Clicked");
+			setEnableButtons(false);
+			server.genetico(data,
+					new AsyncCallback<com.Sudoku.shared.Sudoku>() {
+
+						@Override
+						public void onFailure(Throwable caught) {
+							caught.printStackTrace();
+							showInCorrecto();
+							genetico.removeStyleName("Clicked");
+							setEnableButtons(true);
+						}
+
+						@Override
+						public void onSuccess(Sudoku result) {
+							if (result == null) {
+								showInCorrecto();
+								setEnableButtons(true);
+							} else {
+								if (!result.isAprox()) {
+									showInCorrecto();
+								}
+								genetico.removeStyleName("Clicked");
+								setEnableButtons(true);
+								setResultado(result);
+							}
+						}
+					});
 		}
 
 	}

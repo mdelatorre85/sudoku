@@ -1,5 +1,6 @@
 package com.Sudoku.client;
 
+import com.Sudoku.shared.Sudoku;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 /**
@@ -15,5 +16,7 @@ public interface ServiceAsync {
 			AsyncCallback<com.Sudoku.shared.Sudoku> callback);
 
 	void inteligente(int[][] s, AsyncCallback<com.Sudoku.shared.Sudoku> callback);
+
+	void genetico(int[][] s, AsyncCallback<Sudoku> callback);
 
 }
