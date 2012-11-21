@@ -18,7 +18,7 @@ import com.Sudoku.shared.Sudoku;
  */
 public class GeneticSudoku extends Sudoku implements Serializable {
 	private static final long serialVersionUID = -8014190867918637851L;
-	public static final int MAXGENERATIONS = 3000;
+	public static final int MAXGENERATIONS = 1000;
 
 	private Stack<Generation> generations = new Stack<Generation>();
 
@@ -44,6 +44,7 @@ public class GeneticSudoku extends Sudoku implements Serializable {
 
 				for (LittleSudoku child : children) {
 					child.mutate();
+					child = child.LocalSearch();
 					nextGeneration.getSudokus().push(child);
 				}
 			}
