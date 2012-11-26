@@ -1,2 +1,0 @@
-serviceClass: com.Sudoku.client.Service
-path: 3831FB48BE5F66014A3519EE990759EE.gwt.rpc
