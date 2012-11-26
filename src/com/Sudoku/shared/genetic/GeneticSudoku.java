@@ -18,9 +18,12 @@ import com.Sudoku.shared.Sudoku;
  */
 public class GeneticSudoku extends Sudoku implements Serializable {
 	private static final long serialVersionUID = -8014190867918637851L;
-	public static final int MAXGENERATIONS = 1000;
+	public static final int MAXGENERATIONS = 500;
 
 	private Stack<Generation> generations = new Stack<Generation>();
+	private LittleSudoku bestSpecimen;
+	private int[][] originalSudoku;
+	private LittleSudoku bestExample = null;
 
 	public GeneticSudoku() {
 		super();
@@ -28,14 +31,26 @@ public class GeneticSudoku extends Sudoku implements Serializable {
 
 	public GeneticSudoku(int[][] s) {
 		super(s);
+		originalSudoku = s;
+
 		generations.push(new Generation(s));
 		generations.peek().calculateFitness();
+		bestExample = generations.peek().getBestSudoku();
 
 		int currentGeneration = 0;
 		while (currentGeneration < MAXGENERATIONS) {
 			currentGeneration++;
 			System.out.println("Generación: " + currentGeneration);
 			Generation nextGeneration = new Generation(null);
+
+			// Elitismo
+			if (bestExample.getFitness() < generations.peek().getBestSudoku()
+					.getFitness()) {
+				bestExample = generations.peek().getBestSudoku();
+			}
+			nextGeneration.getSudokus()
+					.push(generations.peek().getBestSudoku());
+
 			while (nextGeneration.getSudokus().size() < Generation.POPULATIONSIZE) {
 				LittleSudoku father = generations.peek().getTournamentWinner();
 				LittleSudoku mother = generations.peek().getTournamentWinner();
@@ -44,28 +59,33 @@ public class GeneticSudoku extends Sudoku implements Serializable {
 
 				for (LittleSudoku child : children) {
 					child.mutate();
-					child = child.LocalSearch();
+					child = child.localSearch();
 					nextGeneration.getSudokus().push(child);
 				}
 			}
+			generations.peek().nullPopulation();
 			nextGeneration.calculateFitness();
-
 			System.out.println("\tBest Fitness: "
 					+ nextGeneration.getBestFitness());
 			System.out.println("\tAverage Fitness: "
 					+ nextGeneration.getAverageFitness());
 			System.out.println("\tWorst Fitness: "
 					+ nextGeneration.getWorstFitness());
-
 			generations.push(nextGeneration);
+
+			if (nextGeneration.getBestFitness() == 81) {
+				break;
+			}
 		}
 
-		int[][] bestS = generations.peek().getBestSudoku().getS();
+		bestSpecimen = generations.peek().getBestSudoku();
+		int[][] bestS = bestSpecimen.getS();
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				setCelda(i, j, bestS[i][j]);
 			}
 		}
+
 		System.out.println("Ta·Dah");
 	}
 
@@ -73,4 +93,11 @@ public class GeneticSudoku extends Sudoku implements Serializable {
 		return generations;
 	}
 
+	public LittleSudoku getBestSpecimen() {
+		return bestSpecimen;
+	}
+
+	public int[][] getOriginalSudoku() {
+		return originalSudoku;
+	}
 }

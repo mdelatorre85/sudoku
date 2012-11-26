@@ -11,7 +11,7 @@ import java.util.Stack;
 public class Generation implements Serializable {
 
 	private static final long serialVersionUID = -3189980947538288543L;
-	private static final int TOURNAMENTSIZE = 20;
+	private static final int TOURNAMENTSIZE = 10;
 	public static final int POPULATIONSIZE = 350;
 
 	private Stack<LittleSudoku> sudokus;
@@ -79,7 +79,7 @@ public class Generation implements Serializable {
 			totalFitness += (double) f;
 		}
 
-		averageFitness = totalFitness / (double) POPULATIONSIZE;
+		averageFitness = totalFitness / (double) sudokus.size();
 	}
 
 	public int getBestFitness() {
@@ -119,5 +119,9 @@ public class Generation implements Serializable {
 		}
 
 		return tournamentWinner;
+	}
+
+	public void nullPopulation() {
+		sudokus = null;
 	}
 }

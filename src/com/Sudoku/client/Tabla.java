@@ -1,8 +1,11 @@
 package com.Sudoku.client;
 
+import java.util.TreeSet;
+
 import com.Sudoku.shared.Sudoku;
 import com.Sudoku.shared.Sudokus;
 import com.Sudoku.shared.genetic.GeneticSudoku;
+import com.Sudoku.shared.genetic.LittleCell;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyUpEvent;
@@ -281,7 +284,7 @@ public class Tabla extends DecoratorPanel implements KeyUpHandler,
 			genetico.addStyleName("Clicked");
 			setEnableButtons(false);
 			// server.genetic(data,
-			server.genetic(Sudokus.s5, new AsyncCallback<GeneticSudoku>() {
+			server.genetic(Sudokus.s1, new AsyncCallback<GeneticSudoku>() {
 
 				@Override
 				public void onFailure(Throwable caught) {
@@ -295,15 +298,30 @@ public class Tabla extends DecoratorPanel implements KeyUpHandler,
 				public void onSuccess(GeneticSudoku result) {
 					if (result == null) {
 						showInCorrecto();
-						setEnableButtons(true);
 					} else {
-						// if (!result.isAprox()) {
-						// showInCorrecto();
-						// }
+						result.getBestSpecimen().setOriginalSudoku(
+								result.getOriginalSudoku());
 						genetico.removeStyleName("Clicked");
-						setEnableButtons(true);
 						setResultado(result);
+						if (!result.isValid()) {
+							TreeSet<LittleCell> wrongCells = result
+									.getBestSpecimen().getWrongCells();
+							for (LittleCell cell : wrongCells) {
+								celdas[cell.getX()][cell.getY()].getElement()
+										.getStyle().setBackgroundColor("Red");
+							}
+
+							for (int i = 0; i < 9; i++) {
+								for (int j = 0; j < 9; j++) {
+									if (result.getOriginalSudoku()[i][j] != 0) {
+										celdas[i][j].addStyleName("CeldaLlena");
+									}
+								}
+							}
+
+						}
 					}
+					setEnableButtons(true);
 				}
 			});
 		}
