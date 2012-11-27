@@ -268,78 +268,77 @@ public class LittleSudoku implements Serializable, Cloneable {
 			// wronCellList.add(wrongCellIterator.next());
 			// }
 
-//			while (wrongCellIndexValues.size() > 0) {
-//				int index = (int) Math.floor(Math.random()
-//						* wrongCellIndexValues.size());
-//				LittleCell cell = wronCellList.get(index);
-//				wrongCellIndexValues.remove(index);
-//				if (originalS[cell.getX()][cell.getY()] == 0) {
-//
-//					boolean[] availableValues = new boolean[9];
-//					for (int i = 0; i < 9; i++) {
-//						availableValues[s[cell.getX()][i] - 1] = true;
-//						availableValues[s[i][cell.getY()] - 1] = true;
-//					}
-//					int a = cell.getX(), b = cell.getY();
-//					int k = 0, l = 0, m = 0, n = 0;
-//					if (a < 3) {
-//						k = 0;
-//						l = 3;
-//					} else if (a < 6) {
-//						k = 3;
-//						l = 6;
-//					} else if (a < 9) {
-//						k = 6;
-//						l = 9;
-//					}
-//
-//					if (b < 3) {
-//						m = 0;
-//						n = 3;
-//					} else if (b < 6) {
-//						m = 3;
-//						n = 6;
-//					} else if (b < 9) {
-//						m = 6;
-//						n = 9;
-//					}
-//
-//					for (int i = k; i < l; i++) {
-//						for (int j = m; j < n; j++) {
-//							availableValues[s[i][j] - 1] = true;
-//						}
-//					}
-//					// los probables valores ya estan en availableValues
-//					Stack<Integer> availableValuesStack = new Stack<Integer>();
-//					for (int i = 0; i < availableValues.length; i++) {
-//						if (availableValues[i] == false) {
-//							availableValuesStack.push(new Integer(i + 1));
-//						}
-//					}
-//					if (availableValuesStack.size() > 0) {
-//						if (availableValuesStack.size() == 1) {
-//							s[cell.getX()][cell.getY()] = availableValuesStack
-//									.peek();
-//						} else {
-//							int indice = (int) Math.floor(Math.random()
-//									* availableValuesStack.size());
-//							// i+1 is a available value;
-//							s[cell.getX()][cell.getY()] = availableValuesStack
-//									.get(indice);
-//						}
-//					}
-//				}
-//
-//			}
+			// while (wrongCellIndexValues.size() > 0) {
+			// int index = (int) Math.floor(Math.random()
+			// * wrongCellIndexValues.size());
+			// LittleCell cell = wronCellList.get(index);
+			// wrongCellIndexValues.remove(index);
+			// if (originalS[cell.getX()][cell.getY()] == 0) {
+			//
+			// boolean[] availableValues = new boolean[9];
+			// for (int i = 0; i < 9; i++) {
+			// availableValues[s[cell.getX()][i] - 1] = true;
+			// availableValues[s[i][cell.getY()] - 1] = true;
+			// }
+			// int a = cell.getX(), b = cell.getY();
+			// int k = 0, l = 0, m = 0, n = 0;
+			// if (a < 3) {
+			// k = 0;
+			// l = 3;
+			// } else if (a < 6) {
+			// k = 3;
+			// l = 6;
+			// } else if (a < 9) {
+			// k = 6;
+			// l = 9;
+			// }
+			//
+			// if (b < 3) {
+			// m = 0;
+			// n = 3;
+			// } else if (b < 6) {
+			// m = 3;
+			// n = 6;
+			// } else if (b < 9) {
+			// m = 6;
+			// n = 9;
+			// }
+			//
+			// for (int i = k; i < l; i++) {
+			// for (int j = m; j < n; j++) {
+			// availableValues[s[i][j] - 1] = true;
+			// }
+			// }
+			// // los probables valores ya estan en availableValues
+			// Stack<Integer> availableValuesStack = new Stack<Integer>();
+			// for (int i = 0; i < availableValues.length; i++) {
+			// if (availableValues[i] == false) {
+			// availableValuesStack.push(new Integer(i + 1));
+			// }
+			// }
+			// if (availableValuesStack.size() > 0) {
+			// if (availableValuesStack.size() == 1) {
+			// s[cell.getX()][cell.getY()] = availableValuesStack
+			// .peek();
+			// } else {
+			// int indice = (int) Math.floor(Math.random()
+			// * availableValuesStack.size());
+			// // i+1 is a available value;
+			// s[cell.getX()][cell.getY()] = availableValuesStack
+			// .get(indice);
+			// }
+			// }
+			// }
+			//
+			// }
 
 			for (LittleCell cell : wrongCell) {
 				boolean[] availableValues = new boolean[9];
 				for (int i = 0; i < 9; i++) {
 					availableValues[s[cell.getX()][i] - 1] = true;
-				}
-				for (int i = 0; i < 9; i++) {
 					availableValues[s[i][cell.getY()] - 1] = true;
 				}
+
 				int a = cell.getX(), b = cell.getY();
 				int k = 0, l = 0, m = 0, n = 0;
 				if (a < 3) {

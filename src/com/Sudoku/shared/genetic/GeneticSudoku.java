@@ -21,7 +21,6 @@ public class GeneticSudoku extends Sudoku implements Serializable {
 	public static final int MAXGENERATIONS = 500;
 
 	private Stack<Generation> generations = new Stack<Generation>();
-	private LittleSudoku bestSpecimen;
 	private int[][] originalSudoku;
 	private LittleSudoku bestExample = null;
 
@@ -78,8 +77,7 @@ public class GeneticSudoku extends Sudoku implements Serializable {
 			}
 		}
 
-		bestSpecimen = generations.peek().getBestSudoku();
-		int[][] bestS = bestSpecimen.getS();
+		int[][] bestS = bestExample.getS();
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				setCelda(i, j, bestS[i][j]);
@@ -94,7 +92,7 @@ public class GeneticSudoku extends Sudoku implements Serializable {
 	}
 
 	public LittleSudoku getBestSpecimen() {
-		return bestSpecimen;
+		return bestExample;
 	}
 
 	public int[][] getOriginalSudoku() {
