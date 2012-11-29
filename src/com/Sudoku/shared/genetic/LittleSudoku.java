@@ -16,7 +16,7 @@ import java.util.TreeSet;
  */
 public class LittleSudoku implements Serializable, Cloneable {
 
-	private static final double MUTATIONPROVABILITY = .0005;
+	private static final double MUTATIONPROVABILITY = .005;
 	private static final double CROSSPROVABILITY = .7;
 
 	static int genotypeLenght = -666;

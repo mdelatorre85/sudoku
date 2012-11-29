@@ -3,7 +3,7 @@ package com.Sudoku.client;
 import java.util.TreeSet;
 
 import com.Sudoku.shared.Sudoku;
-import com.Sudoku.shared.Sudokus;
+import com.Sudoku.shared.genetic.Generation;
 import com.Sudoku.shared.genetic.GeneticSudoku;
 import com.Sudoku.shared.genetic.LittleCell;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -23,8 +23,14 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.visualization.client.AbstractDataTable.ColumnType;
+import com.google.gwt.visualization.client.DataTable;
+import com.google.gwt.visualization.client.VisualizationUtils;
+import com.google.gwt.visualization.client.visualizations.corechart.LineChart;
+import com.google.gwt.visualization.client.visualizations.corechart.Options;
 
 public class Tabla extends DecoratorPanel implements KeyUpHandler,
 		ClickHandler, MouseOverHandler, MouseOutHandler {
@@ -283,8 +289,9 @@ public class Tabla extends DecoratorPanel implements KeyUpHandler,
 		} else if (event.getSource().equals(genetico)) {
 			genetico.addStyleName("Clicked");
 			setEnableButtons(false);
-			// server.genetic(data,
-			server.genetic(Sudokus.s1, new AsyncCallback<GeneticSudoku>() {
+			server.genetic(data, new AsyncCallback<GeneticSudoku>() {
+				// server.genetic(Sudokus.s1, new AsyncCallback<GeneticSudoku>()
+				// {
 
 				@Override
 				public void onFailure(Throwable caught) {
@@ -295,7 +302,7 @@ public class Tabla extends DecoratorPanel implements KeyUpHandler,
 				}
 
 				@Override
-				public void onSuccess(GeneticSudoku result) {
+				public void onSuccess(final GeneticSudoku result) {
 					if (result == null) {
 						showInCorrecto();
 					} else {
@@ -318,6 +325,39 @@ public class Tabla extends DecoratorPanel implements KeyUpHandler,
 									}
 								}
 							}
+							// gráfica
+							Runnable onLoadCallback = new Runnable() {
+								public void run() {
+									DataTable dt = DataTable.create();
+									dt.addColumn(ColumnType.NUMBER,
+											"Generation");
+									dt.addColumn(ColumnType.NUMBER, "Best");
+									dt.addColumn(ColumnType.NUMBER, "Average");
+									dt.addColumn(ColumnType.NUMBER, "Worst");
+
+									int row;
+									for (Generation generation : result
+											.getGenerations()) {
+										row = dt.addRow();
+										dt.setValue(row, 0, row + 1);
+										dt.setValue(row, 1,
+												generation.getBestFitness());
+										dt.setValue(row, 2,
+												generation.getAverageFitness());
+										dt.setValue(row, 3,
+												generation.getWorstFitness());
+									}
+
+									Options o = Options.create();
+									o.setWidth(924);
+									o.setHeight(668);
+									o.setTitle("Evolución");
+									LineChart chart = new LineChart(dt, o);
+									RootPanel.get().add(chart);
+								}
+							};
+							VisualizationUtils.loadVisualizationApi(
+									onLoadCallback, LineChart.PACKAGE);
 
 						}
 					}
